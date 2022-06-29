@@ -1,0 +1,163 @@
+<!-- process1.html -->
+{% extends "index.html" %}
+
+{% block start %}
+ <!-- Page Header Start -->
+
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
+        <div class="container py-0">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="mb-4 mb-md-0 text-white">Process</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn text-white" href="/">Home</a>
+                        <i class="fas fa-angle-right text-white"></i>
+                        <a class="btn text-white disabled">Process</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header Start -->
+
+ 
+
+<!-- 연습 -->
+    <ul id="qm">
+        <!-- (li>a[href=#page$]{메뉴$})*4 -->
+        <li><a href="#process_Flowchart">Flowchart</a></li>
+        <li><a href="#process_Crawling">Crawling</a></li>
+        <li><a href="#process_Database">Database</a></li>
+        <li><a href="#process_AI">AI</a></li>
+    </ul>
+
+    <!-- 컨텐츠 -->
+    <div class="contents">
+        <div class="process" id="process_Flowchar">Flowchart </div>
+        <div class="info" style="margin-left : 450px;">
+            <img class="process_flowchar" src="static/img/flowchart.jpg" style="width:70%">
+        </div>
+        <div class="process" id="process_Crawling">Crawling</div>
+        <div class="info">
+            <img class="process_Crawling" src="static/img/crawling.png" style="width:45%;">
+            <img class="process_Crawling" src="static/img/uipath.png" style="width:45%;">
+        </div>
+        <div class="process" id="process_Database">Database</div>
+        <div class="info">
+            <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            View sipn
+                        </div>
+                        <div class="card-body">
+                            <div style = "overflow-x:auto; width:80%; margin:auto;">
+                        <!--                    <table class="table table-hover table-striped text-center" style=" width: 80%; border: 1px  solid #111114;" align="center">-->
+                            <table id="datatablesSimple" >
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                {% for i in tbName %}
+                                                    <td>{{ i }}</td>
+                                                {% endfor %}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>
+                                                {% for i in tbName %}
+                                                    <td>{{ i }}</td>
+                                                {% endfor %}
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for i in tbList %}
+                                        <tr>
+                                            <td></td>{% for j in i %}
+                                            <td><center>{{ j }}</center></td>
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                            </table>
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                similar product table
+                            </div>
+                            <table id="datatablesSimple2" >
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            {% for i in siName %}
+                                                <td>{{ i }}</td>
+                                            {% endfor %}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            {% for i in siName %}
+                                                <td>{{ i }}</td>
+                                            {% endfor %}
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for i in siList %}
+                                    <tr>
+                                        <td></td>{% for j in i %}
+                                        <td><center>{{ j }}</center></td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    
+        <div class="process" id="process_AI">AI</div>
+            <div class="info">
+                <div class="row">
+                <center><div class="col-lg-6"></center>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    스타일 분류 AI 모델 성능비교
+                                </div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                <div class="card-footer small text-muted"></div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <center><div>날씨 112개, 기온 15개: 날씨라벨링을 위한 군집분석</div></center>
+            <center><img class="clustering" src="static/img/weatherclustering.jpg"></center>
+            <center><div>이미지를 선택하면 유사한 상품을 추천</div></center>
+            <center><img class="item" src="static/img/itemresult.jpg"></center>
+        </div></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="static/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="static/assets/demo/chart-bar-demo.js"></script>
+    <script src="static/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="static/js/datatables-simple-demo.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <link href = "static/css/styles.css" rel="stylesheet"/>
+    <link href = "static/css/styles1.css" rel="stylesheet"/>
+        
+{% endblock start %}
+

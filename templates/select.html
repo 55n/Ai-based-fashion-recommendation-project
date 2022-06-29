@@ -1,0 +1,133 @@
+{% extends  "index.html" %}
+{% block start %}
+
+	<style> 
+		img{
+			width: 400px;
+			height: 600px;
+		}
+
+	</style>
+<body>
+	 <div class="bg-image" style="background-image: url('static/img/carousel-1.jpg'); background-size: cover; background-position: center; min-height: 100vh; min-width: 100vh; position: relative;">
+		<div class = "page-header container-fluid p-0 size:cover;">
+			<div class = "container p-0">
+
+<!--	<center>
+<h1>당신의 스타일을 선택하세요</h1> -->
+	<div class = "container-fluid pt-5">
+		<div class="container py-4">
+			<h1 class="display-4 text-primary text-center mb-4">Choose Your Style</h1>
+			<center><h5>결과창이 나올 때까지 선호하는 스타일을 선택하세요</h5></center>
+		</div>
+	</div>
+
+				<center>
+					<img id="left" src="#">
+					<img id="right" src="#">
+					<form action="/result" id="hidform">
+						<input type="hidden" name="style" id="hid">
+					</form>
+				</center>
+				<script>
+					let count = 0;
+					const left = document.getElementById("left");
+					const right = document.getElementById("right");
+					const hid = document.getElementById("hid");
+					const hidform = document.getElementById("hidform");
+					const images = JSON.parse('{{ imgList|tojson }}');
+					
+					const winners = {
+						"0":0,
+						"1":0,
+						"2":0
+					};
+
+
+
+
+					window.onload = ()=>{
+
+						const styles = Object.keys(images);
+						
+						let arr = [];
+						while(arr.length<2){
+							let r = Math.random()*styles.length << 0;
+							if (arr.indexOf(r)===-1){arr.push(r)};	
+						}
+
+						let idx1 = styles[arr[0]];
+						let idx2 = styles[arr[1]];
+
+						leftImg = images[idx1].pop();
+						rightImg = images[idx2].pop();
+
+						console.log("images: ", images);
+						console.log("winners: ", winners);
+
+						left.src = leftImg;
+						right.src = rightImg;
+
+
+					
+						left.addEventListener("click", ()=>{
+							count++;
+							winners[idx1]++;
+							if (count>4){
+								var maxKey = Object.keys(winners).reduce((a, b) => winners[a] > winners[b] ? a : b);
+								hid.value = maxKey;
+								hidform.submit();
+							} else {
+								showImages(styles);
+							}
+							
+							console.log("count: ", count);
+						});
+
+		
+						right.addEventListener("click", ()=>{
+							count++;
+							winners[idx2]++;
+							if (count>4){
+								var maxKey = Object.keys(winners).reduce((a, b) => winners[a] > winners[b] ? a : b);
+								hid.value = maxKey;
+								hidform.submit();
+							} else {
+								showImages(styles);
+							}
+							
+							console.log("count: ", count);
+						});
+					}
+					
+
+					
+
+					function showImages(styles){
+						let arr = [];
+						while(arr.length<2){
+							let r = Math.random()*styles.length << 0;
+							if (arr.indexOf(r)===-1){arr.push(r)};	
+						}
+
+						let idx1 = styles[arr[0]];
+						let idx2 = styles[arr[1]];
+
+						leftImg = images[idx1].pop();
+						rightImg = images[idx2].pop();
+
+						console.log("images: ", images);
+						console.log("winners: ", winners);
+
+						left.src = leftImg;
+						right.src = rightImg;
+					}
+
+				</script>
+
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock start %}
+

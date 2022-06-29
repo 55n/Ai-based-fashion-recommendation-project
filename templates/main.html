@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+
+{% block start %}
+ <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="/static/img/main/carousel-1.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <a href="/select" class="btn btn-primary py-md-3 px-md-5 mt-2">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+<!-- Contact Info Start -->
+<div class="container-fluid contact-info mt-5 mb-4">
+    <div class="container" style="padding: 0 30px;">
+        <div class="row">
+            <div class="col-md-4 d-flex align-items-center justify-content-center bg-secondary mb-4 mb-lg-0" style="height: 100px;">
+                <div class="d-inline-flex">
+                    <i class="fa fa-2x fa-map-marker-alt text-white m-0 mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="text-white font-weight-medium">Our Location</h5>
+                        <p class="m-0 text-white"> 대룡포스트 2차 2층 더조은 컴퓨터아트학원</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-items-center justify-content-center bg-primary mb-4 mb-lg-0" style="height: 100px;">
+                <div class="d-inline-flex text-left">
+                    <i class="fa fa-2x fa-envelope text-white m-0 mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="text-white font-weight-medium">Email Us</h5>
+                        <p class="m-0 text-white">info@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-items-center justify-content-center bg-secondary mb-4 mb-lg-0" style="height: 100px;">
+                <div class="d-inline-flex text-left">
+                    <i class="fa fa-2x fa-phone-alt text-white m-0 mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="text-white font-weight-medium">Call Us</h5>
+                        <p class="m-0 text-white">02-2082-1688</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Info End -->
+{% endblock start %}

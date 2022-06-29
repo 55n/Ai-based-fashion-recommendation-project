@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+{% block resulthead %}
+    <link rel="stylesheet" href="/static/css/style1.css">
+    <style>
+        img { display: block; margin: 0px auto; }
+    </style>
+{%endblock resulthead %}
+
+{% block resultbody %}
+ <h2>오늘의 스타일은?</h2>
+
+    {{forecast[0][:4]}}년 {{forecast[0][4:6]}}월 {{forecast[0][6:]}}일의 날씨는...<br>
+        평균 {{forecast[1]}}도, 낮 최고기온 {{forecast[2]}}도
+        <table id="forecast", border="1">
+            <thead>
+                <tr>
+                    <th>7시</th>
+                    <th>13시</th>
+                    <th>18시</th>
+                    <th>21시</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for i in range(3,7) %}
+                        {% if forecast[i]==1%}
+                            <td>맑음</td>
+                        {% elif forecast[i]==3 %}
+                            <td>조금 흐림</td> 
+                        {% elif forecast[i]==4 %}
+                            <td>구름 많음</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for i in range(7,11) %}
+                        {% if forecast[i]==0 %}
+                            <td>강수 없음</td>
+                        {% elif forecast[i]==1 %}
+                            <td>비</td>
+                        {% elif forecast[i]==2 %}
+                            <td>눈비</td>
+                        {% elif forecast[i]==3 %}
+                            <td>눈</td>
+                        {% elif forecast[i]==4 %}
+                            <td>소나기</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </h4>
+
+    <p>{{style}}한 당신에게 어울리는</p>
+    <img src="{{results["스냅"]}}", id="snap", width="480", height="700">
+    <center>
+   <table id="products">
+    <tbody>
+        <tr>
+            <td><img src="{{results["상의"][0]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["상의"][1]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["상의"][2]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["상의"][3]["img"]}}" width="100", height="100"></td>
+        </tr>
+        <tr>
+            <td><img src="{{results["바지"][0]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["바지"][1]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["바지"][2]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["바지"][3]["img"]}}" width="100", height="100"></td>
+        </tr>
+        <tr>
+            <td><img src="{{results["아우터"][0]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["아우터"][1]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["아우터"][2]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["아우터"][3]["img"]}}" width="100", height="100"></td>
+        </tr>
+        <tr>
+            <td><img src="{{results["신발"][0]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["신발"][1]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["신발"][2]["img"]}}" width="100", height="100"></td>
+            <td><img src="{{results["신발"][3]["img"]}}" width="100", height="100"></td>
+        </tr>
+    </tbody>
+   </table>
+</center>
+
+
+{% endblock resultbody %}
+

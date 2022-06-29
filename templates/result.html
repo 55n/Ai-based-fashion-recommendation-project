@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+{% block resulthead %}
+    <link rel="stylesheet" href="/static/css/style1.css">
+{% endblock resulthead %}
+
+{% block start %}
+    <!-- Page Header Start -->
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
+        <div class="container py-0">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="mb-4 mb-md-1 text-white">오늘의 스타일은?</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+			    <a class="btn text-white">오늘의<br>예상날씨</a>
+                        <i class="fas fa-angle-right text-white"></i>
+			<a class="btn text-white">평균 {{forecast[1]}}도이고,<br> 낮 최고기온은 {{forecast[2]}}도이며,
+            <br>  
+            {% for i in range(4,5,1) %}
+                {% if forecast[i]==1%}
+                    <td>맑을</td>
+                {% elif forecast[i]==3 %}
+                    <td>조금 흐릴</td> 
+                {% elif forecast[i]==4 %}
+                    <td>흐릴</td>
+                {% endif %}
+            {% endfor %} 예정입니다.
+            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header Start -->
+    <form>
+        <div class="outline-box">
+            <div class="inline-box1">
+                <p>
+                {% if style=='0' %}
+                    액티브
+                {% elif style =='1' %}
+                    캐주얼
+                {% elif style =='2' %}
+                    클래식
+                {% endif %}한 당신에게 어울리는</p>
+                <img class="all" src="{{results["스냅"]}}">
+            </div>
+
+            <div class="inline-box2">
+
+                {% for k,v in results.items() %}
+                    {% if v!=[] and k!="스냅" %}
+                        <div class="in_inline-box1 itemlist">
+                            {% for i in results[k] %}
+                                <div class="product">
+                                    <img class="tin" src="{{i["img"]}}">
+                                    <!-- <div class="tname">{{i["pname"]}}</div> -->
+                                    <div class="tprice">{{i["price"]}}원</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </form>
+{% endblock start %}
+

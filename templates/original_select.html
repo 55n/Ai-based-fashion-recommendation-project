@@ -1,0 +1,150 @@
+{% extends  "index.html" %}
+{% block start %}
+
+	<style> 
+		img{
+			width: 400px;
+			height: 600px;
+		}
+
+	</style>
+<body>
+	 <div class="bg-image" style="background-image: url('static/img/carousel-1.jpg'); background-size: cover; background-position: center; min-height: 100vh; min-width: 100vh; position: relative;">
+		<div class = "page-header container-fluid p-0 size:cover;">
+			<div class = "container p-0">
+
+<!--	<center>
+<h1>당신의 스타일을 선택하세요</h1> -->
+	<div class = "container-fluid pt-5">
+		<div class="container py-4">
+			<h1 class="display-4 text-primary text-center mb-4">Choose Your Style</h1>
+		</div>
+	</div>
+
+	<center>
+	<p id="cal"></p>
+	<img id="image" onclick="change(0)"> 
+	<img id="images" onclick="change(1)">
+	
+  
+	<script>
+		text ="마음에 드는 스타일을 클릭!";
+		var imgIn="{{imgList}}";
+		var images= [];
+		var sImages = []; 
+		var cnt=0; 
+		var num=0; 
+		var sNum = 0;
+		var cnt2=0; 
+       	var res = 0;
+		var str= "&#39;";
+		var str2= ";,";
+		var imgnum= 0;
+		var imgList= [];
+                imgIn= imgIn.replace(/ /g,'');
+                imgIn= imgIn.replaceAll('(','');
+                imgIn= imgIn.replaceAll(str,'');
+		imgIn= imgIn.replaceAll(str2,'');
+		imgIn= imgIn.replaceAll(')','');
+		imgIn= imgIn.split(',');
+		
+		for(i=0; i<8; i++){
+			imgList[i]=[];
+			for(j=0; j<3; j++){
+				imgList[i][j]=imgIn[imgnum];
+				imgnum++;
+			}
+		}
+
+		function show(){ 
+			for(i=0; i<8; i++)
+			{
+				images[i]= imgList[i][2];
+			}
+			images.sort(function(a,b){return 0.5- Math.random()});
+			showImg(num);
+		}
+
+		show(0); 
+
+
+		function showImg(num){ 
+			document.getElementById('image').src=images[num]; 
+			document.getElementById('images').src=images[num+1];
+			cnt2++; 
+		}
+
+		function change(n){
+			if(cnt2<9) 
+			{
+				cnt++;  
+				if(n == 0) {
+					sImages[sNum++] = images[num];
+					}
+				else {
+					sImages[sNum++] = images[num+1]; 
+					}
+				num+=2; 
+
+				showImg(num); 
+
+				if(cnt == images.length/2){ 
+					for(i=0; i<sImages.length; i++){
+						images[i] = sImages[i]; 
+						sImages[i] = null; 
+					}
+					images.splice(cnt); 
+					cnt = 0; 
+					num = 0;
+					sNum = 0;
+                    				images.sort(function(a,b){return 0.5- Math.random()}); 
+					showImg(num);
+				}
+			}
+
+             		else if(cnt<9){
+				if(n==0){
+					res= 0;
+					res= images[res];
+					viewPic(res);}
+				else{
+					res= 1;
+					res= images[res];
+					viewPic(res);}
+           		 	}
+		}
+function viewPic(img){
+  foto1= new Image();
+  foto1.src=img;
+  contImg(img);
+}
+function contImg(img){
+  if((foto1.width!=0)&&(foto1.height!=0)){
+    viewImg(img);
+  }
+  else{
+    funzione="contImg('"+img+"')";
+    intervallo=setTimeout(funzione,20);
+  }
+}
+function viewImg(img){
+	var width= img.width;
+	var height= img.height;
+	for(i=0; i<8; i++){
+	       if(img==imgList[i][2]){
+		       var imgtext=imgList[i][1];
+		}
+	}
+	window.location = "/result/캐주얼"
+	var finestra=window.open("","_blank","height=620px,width=420px,left=600px,top=100px");
+       finestra.document.write("<div><img src="+img+" width='400px' height='600px' onclick='window.close();'><div style='background-color:white;position:absolute; left:50%; top:10px;'>"+imgtext+"</div></div>");	
+}
+		document.getElementById('cal').innerHTML=text;
+	</script>
+	</center>
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock start %}
+
